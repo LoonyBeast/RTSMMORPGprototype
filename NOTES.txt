@@ -1,0 +1,85 @@
+
+DEV NOTES — ROAD TRAVELED (v0.2)
+===============================
+
+This file records architectural decisions that must remain stable.
+
+---
+
+1) CORE PRINCIPLES
+-----------------
+- Separate LOGIC from RENDERING
+- Player object is the source of spatial truth
+- Avoid premature visuals
+- Systems must compose cleanly
+- Prefer flags over fixed properties
+
+---
+
+2) TILE FLAGS
+-------------
+Tiles store logical state via a Set.
+
+Examples:
+- active
+- blocked
+- discovered
+- city
+- quest
+
+Flags are semantic state, never visuals.
+
+---
+
+3) ACTIVE TILE vs CURSOR
+-----------------------
+ACTIVE TILE:
+- Persistent
+- One at a time
+- Represents world focus
+
+CURSOR:
+- Temporary
+- Used for navigation / selection
+- May be disabled depending on scene
+
+This separation enables RTS-style control,
+pathfinding, and multiplayer logic.
+
+---
+
+4) WORLD & ATLAS TRANSLATION
+----------------------------
+- Overworld tiles are world-space coordinates
+- Minimap tiles are world-space at higher resolution
+- 20×20 minimap tiles equal 1 overworld tile
+- Translator handles all atlas communication
+
+---
+
+5) VIEWPORT CONTRACT
+--------------------
+- Scenes declare viewport in tiles, not pixels
+- SceneManager enforces canvas resolution
+- Canvas CSS size always matches buffer size
+- Browser container never clips gameplay
+
+---
+
+6) CAMERA PHILOSOPHY
+--------------------
+- Camera centers the world, not the canvas
+- Spawn logic determines initial centering
+- Fog of war will operate relative to camera window
+- Expansion adds tiles beyond view, not resizing view
+
+---
+
+SAVE POINT
+----------
+Version 0.2 is a stable architectural checkpoint.
+
+World logic, camera logic, and rendering contracts
+are considered locked.
+
+Future work should build on these rules.

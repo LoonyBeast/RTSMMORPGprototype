@@ -1,0 +1,27 @@
+
+PROJECT STRUCTURE — v0.2
+======================
+
+(root)
+├── index.html              → Browser container & canvas contract
+├── main.js                 → Bootstraps engine, player, scenes
+│
+├── engine/
+│   ├── InputManager.js     → Keyboard abstraction
+│   ├── Scene.js            → Base Scene class
+│   ├── SceneManager.js     → Scene switching + viewport enforcement
+│   ├── Translator.js       → Atlas coordinate translation
+│   └── WorldGenerator.js   → Overworld procedural generation
+│
+├── scenes/
+│   ├── LandingScene.js     → Entry / debug scene
+│   ├── OverworldScene.js   → World-level navigation
+│   ├── MinimapScene.js     → Regional navigation (20×20 grid)
+│   └── InGameScene.js      → (planned) High-detail gameplay
+│
+├── assets/
+│   └── (reserved)
+│
+├── README.md               → Project overview & philosophy
+├── NOTES.txt               → Design rules & decisions
+└── STRUCTURE.txt           → File responsibilities
